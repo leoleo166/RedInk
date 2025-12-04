@@ -18,7 +18,8 @@ class ImageService:
 
     # 并发配置
     MAX_CONCURRENT = 15  # 最大并发数
-    AUTO_RETRY_COUNT = 3  # 自动重试次数
+    # 自动重试次数（可通过环境变量 IMAGE_RETRY_COUNT 覆盖，默认 3 次）
+    AUTO_RETRY_COUNT = int(os.getenv("IMAGE_RETRY_COUNT", "3"))
 
     def __init__(self, provider_name: str = None):
         """
